@@ -1,5 +1,5 @@
 // src/main/java/.../auth/RefreshToken.java
-package com.littlebizsolutions.easyrota.auth;
+package com.littlebizsolutions.easyrota.auth.entities;
 
 import jakarta.persistence.*;
 import lombok.*;

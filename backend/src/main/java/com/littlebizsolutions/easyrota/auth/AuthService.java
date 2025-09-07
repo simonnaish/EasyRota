@@ -1,6 +1,13 @@
 package com.littlebizsolutions.easyrota.auth;
 
+import com.littlebizsolutions.easyrota.auth.dto.AuthResponse;
 import com.littlebizsolutions.easyrota.auth.dto.RegistrationRequest;
+import com.littlebizsolutions.easyrota.auth.entities.RefreshToken;
+import com.littlebizsolutions.easyrota.auth.entities.Role;
+import com.littlebizsolutions.easyrota.auth.entities.User;
+import com.littlebizsolutions.easyrota.auth.repositories.RefreshTokenRepository;
+import com.littlebizsolutions.easyrota.auth.repositories.RoleRepository;
+import com.littlebizsolutions.easyrota.auth.repositories.UserRepository;
 import com.littlebizsolutions.easyrota.util.Hashing;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -117,12 +124,5 @@ public class AuthService {
         });
     }
 
-    public record AuthResponse(
-            String accessToken,
-            String refreshToken,
-            Long userId,
-            String email,
-            java.util.List<String> roles
-    ) {
-    }
+
 }

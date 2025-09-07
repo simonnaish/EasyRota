@@ -1,5 +1,6 @@
-package com.littlebizsolutions.easyrota.auth;
+package com.littlebizsolutions.easyrota.auth.repositories;
 
+import com.littlebizsolutions.easyrota.auth.entities.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

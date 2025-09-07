@@ -1,6 +1,10 @@
 // src/main/java/com/littlebizsolutions/easyrota/auth/PasswordResetService.java
 package com.littlebizsolutions.easyrota.auth;
 
+import com.littlebizsolutions.easyrota.auth.entities.PasswordResetToken;
+import com.littlebizsolutions.easyrota.auth.entities.User;
+import com.littlebizsolutions.easyrota.auth.repositories.PasswordResetTokenRepository;
+import com.littlebizsolutions.easyrota.auth.repositories.UserRepository;
 import com.littlebizsolutions.easyrota.util.Hashing;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
