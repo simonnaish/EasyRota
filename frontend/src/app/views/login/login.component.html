@@ -1,1 +1,52 @@
-<p>login works!</p>
+<div class="login">
+  <div class="login__header">
+    <h1>{{'LOGIN.TITLE' | translate}}</h1>
+  </div>
+
+  <form
+    *ngIf="userForm"
+    class="login__form"
+    [formGroup]="userForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <div class="login__form__fields">
+      <mat-form-field>
+        <mat-label>{{'GLOBAL.EMAIL' | translate}}</mat-label>
+        <input
+          matInput
+          formControlName="email"
+          type="email"
+        >
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>{{'LOGIN.PASSWORD' | translate}}</mat-label>
+        <input
+          matInput
+          formControlName="password"
+          type="password"
+        >
+      </mat-form-field>
+    </div>
+    <div class="login__form__actions">
+      <div class="login__form__actions__form">
+        <button
+          mat-flat-button
+          type="button"
+          routerLink="/home"
+        >{{'GLOBAL.BACK' | translate}}</button>
+        <button
+          mat-flat-button
+          type="submit"
+        >{{'GLOBAL.SUBMIT' | translate}}</button>
+      </div>
+      <div class="login__form__actions__forgot-password">
+        <button
+          mat-flat-button
+          type="button"
+          routerLink="/auth/forgot-password"
+        >{{'LOGIN.FORGOT_PASSWORD' | translate}}</button>
+
+      </div>
+    </div>
+  </form>
+</div>

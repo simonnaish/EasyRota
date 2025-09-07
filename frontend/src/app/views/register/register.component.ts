@@ -28,7 +28,7 @@ import {AuthService} from "src/app/services/auth.service";
 })
 export class RegisterComponent implements OnInit {
   private readonly _fb: FormBuilder = inject(FormBuilder);
-  private readonly _registerService: AuthService = inject(AuthService);
+  private readonly _authService: AuthService = inject(AuthService);
   public userForm: FormGroup | undefined;
 
 
@@ -48,7 +48,7 @@ export class RegisterComponent implements OnInit {
 
   public onSubmit(): void {
     let subscription: Subscription;
-    subscription = this._registerService.register(this.userForm?.value).subscribe({
+    subscription = this._authService.register(this.userForm?.value).subscribe({
       next: (response) => console.log(response),
       error: (e) => {
         console.log(e);

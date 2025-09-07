@@ -1,11 +1,47 @@
-import { Component } from '@angular/core';
+import {NgIf} from "@angular/common";
+import {Component, inject, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import {MatButton} from "@angular/material/button";
+import {MatFormField, MatLabel} from "@angular/material/form-field";
+import {MatInput} from "@angular/material/input";
+import {RouterLink} from "@angular/router";
+import {TranslatePipe} from "@ngx-translate/core";
+import {AuthService} from "src/app/services/auth.service";
 
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
   styleUrls: ['./forgot-password.component.scss'],
-  standalone: false
+  imports: [
+    MatFormField,
+    MatInput,
+    MatLabel,
+    ReactiveFormsModule,
+    TranslatePipe,
+    MatButton,
+    RouterLink,
+    NgIf
+  ],
+  standalone: true
 })
-export class ForgotPasswordComponent {
+export class ForgotPasswordComponent implements OnInit {
+  private readonly _fb: FormBuilder = inject(FormBuilder);
+  private readonly _authService: AuthService = inject(AuthService);
+  public forgotPasswordForm: FormGroup | undefined;
+
+  public ngOnInit(): void {
+    this.initForgotPasswordForm();
+  }
+
+  private initForgotPasswordForm(): void {
+    this.forgotPasswordForm = this._fb.group({
+      'email': ['aaaaa@aaaaa', [Validators.required, Validators.email]]
+    })
+  }
+
+  public onSubmit(): void {
+    console.log(this.forgotPasswordForm?.value);
+    // this._authService.
+  }
 
 }

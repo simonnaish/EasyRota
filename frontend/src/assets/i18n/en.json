@@ -1,4 +1,9 @@
 {
+  "GLOBAL": {
+    "BACK": "Return",
+    "SUBMIT": "Submit",
+    "EMAIL": "Email"
+  },
   "HOME": {
     "TITLE": "Welcome!",
     "SIGN_IN": "Sign in",
@@ -7,10 +12,15 @@
   "REGISTER": {
     "TITLE": "Let's get started!",
     "FULL_NAME": "Full name",
-    "EMAIL": "Email",
     "PASSWORD": "Password",
-    "CONFIRM_PASSWORD": "Confirm Password",
-    "BACK": "Return",
-    "SUBMIT": "Submit"
+    "CONFIRM_PASSWORD": "Confirm Password"
+  },
+  "LOGIN": {
+    "TITLE": "Welcome back!",
+    "PASSWORD": "Password",
+    "FORGOT_PASSWORD": "Forgot password"
+  },
+  "FORGOT": {
+    "TITLE": "Recover password"
   }
 }
