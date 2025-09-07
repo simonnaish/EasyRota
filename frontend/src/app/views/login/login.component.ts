@@ -4,7 +4,7 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/
 import {MatButton} from "@angular/material/button";
 import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
-import {RouterLink} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import {TranslatePipe} from "@ngx-translate/core";
 import {Subscription} from "rxjs";
 import {AuthService} from "src/app/services/auth.service";
@@ -28,6 +28,7 @@ import {AuthService} from "src/app/services/auth.service";
 export class LoginComponent implements OnInit {
   private readonly _fb: FormBuilder = inject(FormBuilder);
   private readonly _authService: AuthService = inject(AuthService);
+  private readonly _router: Router = inject(Router);
   public userForm: FormGroup | undefined;
 
   public ngOnInit(): void {
@@ -45,7 +46,7 @@ export class LoginComponent implements OnInit {
   public onSubmit(): void {
     let subscription: Subscription;
     subscription = this._authService.login(this.userForm?.value).subscribe({
-      next: (response) => console.log(response),
+      next: (response) => this._router.navigate(['/home']),
       error: (e) => {
         console.log(e);
         subscription.unsubscribe();

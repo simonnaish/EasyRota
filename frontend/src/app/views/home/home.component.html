@@ -1,4 +1,5 @@
 <div class="home">
+  <ng-template #unauthenticatedTemplate>
   <div class="home__header">
     <h1>{{'HOME.TITLE' | translate}}</h1>
   </div>
@@ -13,4 +14,12 @@
       routerLink="/auth/login"
     >{{'HOME.SIGN_IN' | translate}}</button>
   </div>
+  </ng-template>
+  <ng-template #authenticatedTemplate>
+    <button
+      mat-flat-button
+      (click)="logout()"
+    >{{'HOME.LOG_OUT' | translate}}</button>
+  </ng-template>
+  <ng-container *ngIf="authenticated; then authenticatedTemplate; else unauthenticatedTemplate"></ng-container>
 </div>

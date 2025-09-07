@@ -7,7 +7,8 @@
   "HOME": {
     "TITLE": "Welcome!",
     "SIGN_IN": "Sign in",
-    "SIGN_UP": "Sign up"
+    "SIGN_UP": "Sign up",
+    "LOG_OUT": "Log out"
   },
   "REGISTER": {
     "TITLE": "Let's get started!",
@@ -22,5 +23,8 @@
   },
   "FORGOT": {
     "TITLE": "Recover password"
+  },
+  "RESET": {
+    "TITLE": "Reset your password here"
   }
 }
