@@ -1,0 +1,57 @@
+<div class="register">
+  <div class="register__header">
+    <h1>{{'REGISTER.TITLE' | translate}}</h1>
+  </div>
+  <form
+    *ngIf="userForm"
+    class="register__form"
+    [formGroup]="userForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <div class="register__form__fields">
+      <mat-form-field>
+        <mat-label>{{'REGISTER.FULL_NAME' | translate}}</mat-label>
+        <input
+          matInput
+          formControlName="fullName"
+          type="text"
+        >
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>{{'REGISTER.EMAIL' | translate}}</mat-label>
+        <input
+          matInput
+          formControlName="email"
+          type="email"
+        >
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>{{'REGISTER.PASSWORD' | translate}}</mat-label>
+        <input
+          matInput
+          formControlName="password"
+          type="password"
+        >
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>{{'REGISTER.CONFIRM_PASSWORD' | translate}}</mat-label>
+        <input
+          matInput
+          formControlName="confirmPassword"
+          type="password"
+        >
+      </mat-form-field>
+    </div>
+    <div class="register__form__action">
+      <button
+        mat-flat-button
+        type="button"
+      >{{'REGISTER.BACK' | translate}}</button>
+      <button
+        mat-flat-button
+        type="submit"
+      >{{'REGISTER.SUBMIT' | translate}}</button>
+    </div>
+
+  </form>
+</div>

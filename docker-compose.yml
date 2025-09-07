@@ -1,0 +1,56 @@
+version: '3.9'
+
+services:
+#  db:
+#    image: postgres:16
+#    container_name: easyrota_db
+#    restart: always
+#    environment:
+#      POSTGRES_USER: easyrota
+#      POSTGRES_PASSWORD: easyrota_pass
+#      POSTGRES_DB: easyrota_db
+#    ports:
+#      - "5432:5432"
+#    volumes:
+#      - postgres_data:/var/lib/postgresql/data
+#    healthcheck:
+#      test: ["CMD-SHELL", "pg_isready -U easyrota -d easyrota_db"]
+#      interval: 10s
+#      timeout: 5s
+#      retries: 10
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: easyrota_backend
+#    depends_on:
+#      db:
+#        condition: service_healthy
+    environment:
+      # Be explicit so the app always sees a DataSource in Docker
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/easyrota_db
+      SPRING_DATASOURCE_USERNAME: easyrota
+      SPRING_DATASOURCE_PASSWORD: easyrota_pass
+
+      # Optional but recommended:
+      SPRING_JPA_OPEN_IN_VIEW: "false"
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update   # dev only; prefer Flyway for schema
+      SPRING_FLYWAY_ENABLED: "true"
+      SPRING_FLYWAY_BASELINE_ON_MIGRATE: "true"
+
+    ports:
+      - "8080:8080"
+
+#  frontend:
+#    build:
+#      context: ./frontend
+#      dockerfile: Dockerfile
+#    container_name: easyrota_frontend
+#    depends_on:
+#      - backend
+#    ports:
+#      - "4200:80"
+
+volumes:
+  postgres_data:

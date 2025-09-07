@@ -1,0 +1,11 @@
+{
+  "REGISTER": {
+    "TITLE": "Let's get started!",
+    "FULL_NAME": "Full name",
+    "EMAIL": "Email",
+    "PASSWORD": "Password",
+    "CONFIRM_PASSWORD": "Confirm Password",
+    "BACK": "Return",
+    "SUBMIT": "Submit"
+  }
+}
