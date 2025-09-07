@@ -6,6 +6,7 @@ import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {RouterLink} from "@angular/router";
 import {TranslatePipe} from "@ngx-translate/core";
+import {Subscription} from "rxjs";
 import {AuthService} from "src/app/services/auth.service";
 
 @Component({
@@ -41,7 +42,15 @@ export class ForgotPasswordComponent implements OnInit {
 
   public onSubmit(): void {
     console.log(this.forgotPasswordForm?.value);
-    // this._authService.
+    let subscription: Subscription;
+    subscription = this._authService.forgotPassword(this.forgotPasswordForm?.get('email')?.value).subscribe({
+      next: (response) => console.log(response),
+      error: (e) => {
+        console.log(e);
+        subscription.unsubscribe();
+      },
+      complete: () => subscription.unsubscribe()
+    });
   }
 
 }

@@ -1,6 +1,6 @@
 import {HttpClient} from "@angular/common/http";
 import {inject, Injectable} from '@angular/core';
-import {Observable, tap} from "rxjs";
+import {map, Observable, tap} from "rxjs";
 import {
   AuthResponse,
   LoginRequest,
@@ -60,6 +60,17 @@ export class AuthService {
         });
       })
     );
+  }
+
+  /** POST /api/auth/forgot-password — always returns 200 OK (no body) */
+  forgotPassword(email: string): Observable<void> {
+    return this._http.post<void>(`${this.apiUrl}/forgot-password`, { email });
+  }
+
+  /** POST /api/auth/reset-password — returns 204 No Content on success */
+  resetPassword(token: string, newPassword: string): Observable<void> {
+    return this._http.post(`${this.apiUrl}/reset-password`, { token, newPassword }, { observe: 'response' })
+      .pipe(map(() => void 0));
   }
 
   isAuthenticated(): boolean { return this._store.isAuthenticated(); }
