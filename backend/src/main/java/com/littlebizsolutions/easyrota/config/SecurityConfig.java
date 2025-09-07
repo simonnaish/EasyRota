@@ -1,5 +1,6 @@
 package com.littlebizsolutions.easyrota.config;
 
+import com.littlebizsolutions.easyrota.security.JwtAuthFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -11,6 +12,8 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class SecurityConfig {
+    private final JwtAuthFilter jwtFilter;
+    public SecurityConfig(JwtAuthFilter jwtFilter) { this.jwtFilter = jwtFilter; }
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -29,7 +32,9 @@ public class SecurityConfig {
                         ).permitAll()
                         // Everything else requires auth (you can relax later)
                         .anyRequest().authenticated()
-                );
+                )
+                .addFilterBefore(jwtFilter, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter.class);
+
         return http.build();
     }
 

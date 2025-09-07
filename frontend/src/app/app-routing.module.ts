@@ -1,9 +1,10 @@
 import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from '@angular/router';
+import {HomeComponent} from "src/app/views/home/home.component";
 
 export const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'auth' },
-
+  {path: '', pathMatch: 'full', redirectTo: 'home'},
+  {path: 'home', component: HomeComponent},
   {
     path: 'auth',
     children: [
@@ -22,7 +23,7 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./views/forgot-password/forgot-password.component').then(m => m.ForgotPasswordComponent),
       },
-      { path: '', pathMatch: 'full', redirectTo: 'register' },
+      {path: '', pathMatch: 'full', redirectTo: 'register'},
     ],
   },
 
@@ -103,11 +104,12 @@ export const routes: Routes = [
   },
 
   // Catch-all
-  { path: '**', redirectTo: 'not-found' },
+  {path: '**', redirectTo: 'not-found'},
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

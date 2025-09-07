@@ -1,4 +1,9 @@
 {
+  "HOME": {
+    "TITLE": "Welcome!",
+    "SIGN_IN": "Sign in",
+    "SIGN_UP": "Sign up"
+  },
   "REGISTER": {
     "TITLE": "Let's get started!",
     "FULL_NAME": "Full name",

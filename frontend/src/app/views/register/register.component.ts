@@ -4,9 +4,10 @@ import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} fr
 import {MatButton} from "@angular/material/button";
 import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
+import {RouterLink} from "@angular/router";
 import {TranslatePipe} from "@ngx-translate/core";
 import {Subscription} from "rxjs";
-import {RegisterService} from "src/app/services/register.service";
+import {AuthService} from "src/app/services/auth.service";
 
 @Component({
   selector: 'app-registration',
@@ -20,13 +21,14 @@ import {RegisterService} from "src/app/services/register.service";
     ReactiveFormsModule,
     NgIf,
     TranslatePipe,
-    MatButton
+    MatButton,
+    RouterLink
   ],
   standalone: true
 })
 export class RegisterComponent implements OnInit {
   private readonly _fb: FormBuilder = inject(FormBuilder);
-  private readonly _registerService: RegisterService = inject(RegisterService);
+  private readonly _registerService: AuthService = inject(AuthService);
   public userForm: FormGroup | undefined;
 
 
@@ -47,10 +49,10 @@ export class RegisterComponent implements OnInit {
   public onSubmit(): void {
     let subscription: Subscription;
     subscription = this._registerService.register(this.userForm?.value).subscribe({
-      next:(response) => console.log(response),
+      next: (response) => console.log(response),
       error: (e) => {
-        console.log(e),
-          subscription.unsubscribe();
+        console.log(e);
+        subscription.unsubscribe();
       },
       complete: () => subscription.unsubscribe()
     });

@@ -1,9 +1,16 @@
-{"REGISTER": {
-  "TITLE": "No to zaczynamy!",
-  "FULL_NAME": "Imie i nazwisko",
-  "EMAIL": "Email",
-  "PASSWORD": "Hasło",
-  "CONFIRM_PASSWORD": "Potwierdź hasło",
-  "BACK": "Wróć",
-  "SUBMIT": "Zatwierdź"
-}}
+{
+  "HOME": {
+    "TITLE": "Witamy",
+    "SIGN_IN": "Zaloguj",
+    "SIGN_UP": "Zarejestruj"
+  },
+  "REGISTER": {
+    "TITLE": "No to zaczynamy!",
+    "FULL_NAME": "Imie i nazwisko",
+    "EMAIL": "Email",
+    "PASSWORD": "Hasło",
+    "CONFIRM_PASSWORD": "Potwierdź hasło",
+    "BACK": "Wróć",
+    "SUBMIT": "Zatwierdź"
+  }
+}
