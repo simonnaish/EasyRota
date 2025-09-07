@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,9 +16,15 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class AuthController {
     private final AuthService authService;
+    private final PasswordResetService service;
 
     public record LoginRequest(@Email String email, @NotBlank String password) {}
     public record TokenRequest(@NotBlank String refreshToken) {}
+
+    public record ForgotPasswordRequest(@Email @NotBlank String email) {}
+    public record ResetPasswordRequest(@NotBlank String token,
+                                       @NotBlank @Size(min=8, max=72) String newPassword) {}
+
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@Valid @RequestBody RegistrationRequest req) {
@@ -58,6 +65,21 @@ public class AuthController {
             put("email", email);
             put("roles", roles);
         }});
+    }
+
+
+
+
+    @PostMapping("/forgot-password")
+    public ResponseEntity<?> forgot(@RequestBody ForgotPasswordRequest req, HttpServletRequest http) {
+        service.requestReset(req.email(), http.getHeader("User-Agent"), http.getRemoteAddr());
+        return ResponseEntity.ok().build(); // always 200
+    }
+
+    @PostMapping("/reset-password")
+    public ResponseEntity<?> reset(@RequestBody ResetPasswordRequest req) {
+        service.confirmReset(req.token(), req.newPassword());
+        return ResponseEntity.noContent().build();
     }
 
 

@@ -5,11 +5,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import jakarta.servlet.http.HttpServletRequest;
 import java.time.OffsetDateTime;
 import java.util.List;
+import java.util.Map;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -72,4 +74,14 @@ public class GlobalExceptionHandler {
         );
         return ResponseEntity.badRequest().body(resp);
     }
+
+    // src/main/java/com/littlebizsolutions/easyrota/web/GlobalExceptionHandler.java
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<Map<String,String>> handleIllegal(IllegalArgumentException ex, HttpServletRequest req) {
+        return ResponseEntity.badRequest().body(Map.of(
+                "error", "invalid_request",
+                "message", ex.getMessage()
+        ));
+    }
+
 }
