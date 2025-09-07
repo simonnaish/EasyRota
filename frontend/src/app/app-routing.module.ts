@@ -23,6 +23,11 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./views/forgot-password/forgot-password.component').then(m => m.ForgotPasswordComponent),
       },
+      {
+        path: 'reset-password',
+        loadComponent: () =>
+          import('./views/reset-password/reset-password.component').then(m => m.ResetPasswordComponent),
+      },
       {path: '', pathMatch: 'full', redirectTo: 'register'},
     ],
   },
