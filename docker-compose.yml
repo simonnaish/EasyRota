@@ -19,14 +19,24 @@ services:
 #      timeout: 5s
 #      retries: 10
 
+  mailpit:
+    image: ghcr.io/axllent/mailpit:latest
+    container_name: easyrota_mailpit
+    ports:
+      - "1025:1025"   # SMTP
+      - "8025:8025"   # Web UI
+    restart: unless-stopped
+
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
     container_name: easyrota_backend
-#    depends_on:
+    depends_on:
 #      db:
 #        condition: service_healthy
+      - mailpit
+
     environment:
       # Be explicit so the app always sees a DataSource in Docker
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/easyrota_db
